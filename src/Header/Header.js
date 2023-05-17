@@ -9,13 +9,13 @@ function Header() {
   return (
     <div className='header'>
       <IconButton>
-        <PersonIcon fontSize='large' className='header_user'/>
+        <PersonIcon fontSize='large' className='header__user'/>
       </IconButton>
       <IconButton>
-        <InsertEmoticonIcon fontSize='large' className='header_logo'/>
+        <InsertEmoticonIcon fontSize='large' className='header__logo'/>
       </IconButton>
       <IconButton>
-        <ForumIcon fontSize='large' className='header_logo'/>
+        <ForumIcon fontSize='large' className='header__chat'/>
       </IconButton>
       {/* chat icon*/}
     </div>
