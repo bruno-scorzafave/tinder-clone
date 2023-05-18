@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import './TinderCards.scss';
 import TinderCard from 'react-tinder-card';
+
+import './TinderCards.scss';
 
 const onSwipe = (direction) => {
   console.log('You swiped: ' + direction);

@@ -1,9 +1,11 @@
 import React from 'react';
-import './Header.scss';
+
 import PersonIcon from '@mui/icons-material/Person';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import ForumIcon from '@mui/icons-material/Forum';
 import { IconButton } from '@mui/material';
+
+import './Header.scss';
 
 function Header() {
   return (
@@ -17,7 +19,6 @@ function Header() {
       <IconButton>
         <ForumIcon fontSize='large' className='header__chat'/>
       </IconButton>
-      {/* chat icon*/}
     </div>
   )
 }
