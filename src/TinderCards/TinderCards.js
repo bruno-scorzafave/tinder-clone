@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TinderCard from 'react-tinder-card';
+
+import axios from '../axios';
 
 import './TinderCards.scss';
 
@@ -12,16 +14,17 @@ const onCardLeftScreen = (myIdentifier) => {
 }
 
 function TinderCards() {
-    const [people, setPeople] = useState([
-        {
-            name: 'KattyPerry',
-            url: 'https://yt3.googleusercontent.com/8s2hH6UfSKbED2-UUVgCALU5BXXxvnk2ueNzBaCU-exfeoC9X1OZzDa6uqzI4cOA3ZDqyXjIsg=s900-c-k-c0x00ffffff-no-rj'
-        },
-        {
-            name: 'Barack Obama',
-            url: 'https://upload.wikimedia.org/wikipedia/commons/c/c4/President_Barack_Obama_%28cropped%29.jpg'
-        }
-    ]);
+    const [people, setPeople] = useState([]);
+
+    useEffect(() => {
+      async function fetchData() {
+        const req = await axios.get('/tinder/cards');
+
+        setPeople(req.data);
+      };
+
+      fetchData();
+    }, []);
 
   return (
     <div className='tinderCards'>
@@ -36,7 +39,7 @@ function TinderCards() {
                         preventSwipe={['up', 'down']}
                     >
                         <div
-                            style={{ backgroundImage: `url(${person.url})`}}
+                            style={{ backgroundImage: `url(${person.imgUrl})`}}
                             className='tinderCards__card'
                         >
                             <h3>{person.name}</h3>
