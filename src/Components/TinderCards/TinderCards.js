@@ -1,41 +1,78 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import TinderCard from 'react-tinder-card';
 
+import SwipeButtons from '../../Components/SwipeButtons/SwipeButtons';
 import axios from '../../axios';
 
 import './TinderCards.scss';
 
-const onSwipe = (direction) => {
-  console.log('You swiped: ' + direction);
-}
-
-const onCardLeftScreen = (myIdentifier) => {
-  console.log(myIdentifier + ' left the screen');
-}
-
 function TinderCards() {
-    const [people, setPeople] = useState([]);
+  const [people, setPeople] = useState([]);
 
-    useEffect(() => {
-      async function fetchData() {
-        const req = await axios.get('/tinder/cards');
+  useEffect(() => {
+    async function fetchData() {
+      const req = await axios.get('/tinder/cards');
 
-        setPeople(req.data);
-      };
+      setPeople(req.data);
+    };
 
-      fetchData();
-    }, []);
+    fetchData().then(setCurrentIndex(people.length - 1));
+  }, [people.length]);
+
+  const [currentIndex, setCurrentIndex] = useState(people.length - 1);
+  const currentIndexRef = useRef(currentIndex);
+
+  const childRefs = useMemo(
+    () =>
+      Array(people.length)
+        .fill(0)
+        .map((i) => React.createRef()),
+    [people.length]
+  );
+
+  const updateCurrentIndex = (val) => {
+    setCurrentIndex(val);
+    currentIndexRef.current = val;
+  };
+
+  const canGoBack = currentIndex < people.length - 1;
+
+  const canSwipe = currentIndex >= 0;
+
+  const swiped = (direction, nameToDelete, index) => {
+    updateCurrentIndex(index - 1);
+  };
+
+  const outOfFrame = (name, idx) => {
+    console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
+    currentIndexRef.current >= idx && childRefs[idx].current.restoreCard();
+  };
+
+  const swipe = async (dir) => {
+    if (canSwipe && currentIndex < people.length) {
+      await childRefs[currentIndex].current.swipe(dir);
+    }
+  };
+
+
+  const goBack = async () => {
+    if (!canGoBack) return
+    const newIndex = currentIndex + 1;
+    updateCurrentIndex(newIndex);
+    await childRefs[newIndex].current.restoreCard();
+  };
 
   return (
     <div className='tinderCards'>
       {
         <div className='tinderCards__container'>
-            {people.map((person) => (
+            {people.map((person, index) => (
                     <TinderCard
+                        ref={childRefs[index]}
                         className='tinderCards__swipe'
                         key={person.name}
-                        onSwipe={onSwipe}
-                        onCardLeftScreen={() => onCardLeftScreen(`${person.name}`)}
+                        onSwipe={(dir) => swiped(dir, person.name, index)}
+                        onCardLeftScreen={() => outOfFrame(person.name, index)}
                         preventSwipe={['up', 'down']}
                     >
                         <div
@@ -46,9 +83,10 @@ function TinderCards() {
                         </div>
                     </TinderCard>
             ))}
-        </div>
-      }
-    </div>
+            <SwipeButtons swipe={swipe} goBack={goBack} />
+          </div>
+        }
+      </div>
   )
 }
 

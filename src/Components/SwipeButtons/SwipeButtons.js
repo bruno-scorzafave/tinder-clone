@@ -8,22 +8,24 @@ import FlashOnIcon from '@mui/icons-material/FlashOn';
 
 import './SwipeButtons.scss';
 
-function SwipeButtons() {
+function SwipeButtons(props) {
+  const { swipe, goBack } = props;
+
   return (
     <div className='swipeButtons'>
-      <IconButton className='swipeButtons__repeat'>
+      <IconButton onClick={ () => goBack() } className='swipeButtons__repeat'>
         <ReplayIcon fontSize='large' />
       </IconButton>
-      <IconButton className='swipeButtons__left'>
+      <IconButton onClick={ () => swipe('left') } className='swipeButtons__left'>
         <CloseIcon fontSize='large' />
       </IconButton>
-      <IconButton className='swipeButtons__star'>
+      <IconButton onClick={ () => swipe('down') } className='swipeButtons__star'>
         <StarRateIcon fontSize='large' />
       </IconButton>
-      <IconButton className='swipeButtons__right'>
+      <IconButton onClick={ () => swipe('right') } className='swipeButtons__right'>
         <FavoriteIcon fontSize='large' />
       </IconButton>
-      <IconButton className='swipeButtons__lightning'>
+      <IconButton onClick={ () => swipe('up') } className='swipeButtons__lightning'>
         <FlashOnIcon fontSize='large' />
       </IconButton>
     </div>
