@@ -1,16 +1,50 @@
-import Header from './Header/Header';
-import TinderCards from './TinderCards/TinderCards';
-import SwipeButtons from './SwipeButtons/SwipeButtons';
+import { useSelector } from 'react-redux';
+
+import Header from './Components/Header/Header';
+import TinderCards from './Components/TinderCards/TinderCards';
+import SwipeButtons from './Components/SwipeButtons/SwipeButtons';
+import NoPage from './Components/NoPage/NoPage';
+import Chat from './Components/Chat/Chat';
+
 import './App.scss';
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-      <TinderCards />
-      <SwipeButtons />
-    </div>
-  );
+  const { currentPage } = useSelector((rootReducer) => rootReducer.pageReducer);
+
+  switch (currentPage) {
+    case 'Cards':
+      return (
+        <div className="App">
+          <Header />
+          <TinderCards />
+          <SwipeButtons />
+        </div>
+      );
+
+    case 'Chat':
+      return (
+        <div className="App">
+          <Header />
+          <Chat />
+        </div>
+      );
+      case 'User':
+        return (
+          <div className="App">
+            <Header />
+            <NoPage />
+            <NoPage />
+          </div>
+        );
+    default:
+      return (
+        <div className="App">
+          <Header />
+          <TinderCards />
+          <SwipeButtons />
+        </div>
+      );
+  }
 }
 
 export default App;
