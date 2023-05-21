@@ -9,8 +9,6 @@ import './Chat.scss';
 function Chat() {
   const { messages } = useSelector((rootReducer) => rootReducer.messageReducer);
 
-  console.log('messsages:', messages);
-
   return (
     <div className='chatContainer'>
       <InputContainer />
