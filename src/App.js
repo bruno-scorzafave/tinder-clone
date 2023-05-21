@@ -32,7 +32,6 @@ function App() {
           <div className="App">
             <Header />
             <NoPage />
-            <NoPage />
           </div>
         );
     default:

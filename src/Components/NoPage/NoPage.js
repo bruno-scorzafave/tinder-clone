@@ -1,9 +1,12 @@
 import React from 'react';
 
+import './NoPage.scss'
+
 function NoPage() {
   return (
-    <div>
-      404
+    <div className='noPage'>
+      <h1>404</h1>
+      <h3>Error! Page not found</h3>
     </div>
   )
 }

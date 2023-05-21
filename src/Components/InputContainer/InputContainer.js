@@ -12,7 +12,6 @@ function InputContainer() {
     const dispatch = useDispatch();
 
     const handleSendMessage = (event) => {
-      console.log(event);
        if (event.type === 'keypress' && event.key !=='Enter') {
         return;
        }
