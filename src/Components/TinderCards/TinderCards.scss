@@ -29,5 +29,6 @@
     &__swipe {
         position: absolute;
         max-width: 100vw;
+        z-index: 2;
     }
 }

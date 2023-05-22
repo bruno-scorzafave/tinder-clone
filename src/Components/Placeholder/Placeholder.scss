@@ -1,0 +1,19 @@
+.placeholder {
+    background-image: url('https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg');
+    width: 600px;
+    height: 60vh;
+    max-width: 85vw;
+    box-shadow: 0px 18px 53px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    flex-direction: column-reverse;
+    display: flex;
+
+    h1 {
+        position: absolute;
+        z-index: 1;
+        text-align: center;
+        width: 600px;
+        max-width: 85vw;
+        margin-bottom: 5vh;
+    }
+}

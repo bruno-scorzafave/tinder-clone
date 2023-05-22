@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, useMemo } from 'react';
 import TinderCard from 'react-tinder-card';
 
 import SwipeButtons from '../../Components/SwipeButtons/SwipeButtons';
+import Placeholder from '../../Components/Placeholder/Placeholder';
 import axios from '../../axios';
 
 import './TinderCards.scss';
@@ -82,6 +83,7 @@ function TinderCards() {
                         </div>
                     </TinderCard>
             ))}
+            <Placeholder />
             <SwipeButtons swipe={swipe} goBack={goBack} />
           </div>
         }
