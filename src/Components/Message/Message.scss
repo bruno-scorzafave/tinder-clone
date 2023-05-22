@@ -1,6 +1,11 @@
 .messageContainer {
     padding: 10px;
 
+    textarea {
+        outline: 0;
+        resize: none;
+    }
+
     &__message {
         padding: 10px;
         border-radius: 10px;

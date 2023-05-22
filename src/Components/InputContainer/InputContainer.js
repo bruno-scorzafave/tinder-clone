@@ -12,11 +12,12 @@ function InputContainer() {
     const dispatch = useDispatch();
 
     const handleSendMessage = (event) => {
-       if (event.type === 'keypress' && event.key !=='Enter') {
-        return;
-       }
       const inputMessage = document.querySelector(".inputContainer__input input");
       const message = inputMessage.value;
+
+      if ((event.type === 'keypress' && event.key !=='Enter') || message === '') {
+        return;
+       }
 
       dispatch(sendMessage([message]));
       inputMessage.value = '';
