@@ -1,3 +1,5 @@
+@import '../../Style/breakpoints';
+
 .chatContainer  {
     width: 100%;
     height: calc(100% - 51px);
@@ -15,5 +17,13 @@
         display: flex;
         flex-direction: column;
         text-align: end;
+
+        @include desktop {
+            margin: 0 13vw;
+        }
+
+        @include big-desktop {
+            margin: 0 18vw;
+        }
     }
 }

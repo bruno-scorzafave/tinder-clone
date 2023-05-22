@@ -1,9 +1,30 @@
+@import '../../Style/breakpoints';
+
 .messageContainer {
     padding: 10px;
 
     textarea {
         outline: 0;
-        resize: none;
+        max-width: 150px;
+
+        @include tablet-desktop {
+            font-size: 17px;
+            max-width: 400px;
+        }
+
+        @include small-desktop {
+            width: 300px;
+        }
+
+        @include desktop {
+            width: 400px;
+        }
+
+        @include big-desktop {
+            font-size: 22px;
+            width: 600px;
+            max-width: 600px;
+        }
     }
 
     &__message {

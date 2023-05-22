@@ -1,3 +1,5 @@
+@import '../../Style/breakpoints';
+
 .swipeButtons {
     position: absolute;
     bottom: 10vh;
@@ -12,6 +14,14 @@
 
     > button {
         padding: 3vw !important;
+
+        @include desktop {
+            padding: 2vw !important;
+        }
+
+        @include big-desktop {
+            padding: 2vw !important;
+        }
     }
 
     &__repeat {

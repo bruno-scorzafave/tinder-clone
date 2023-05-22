@@ -1,12 +1,32 @@
+@import '../../Style/breakpoints';
+
 .inputContainer {
     display: flex;
     margin: 20px 8vw 50px 8vw;
     width: 84vw;
     justify-content: space-between;
 
+    @include desktop {
+        margin: 20px 13vw 50px 13vw;
+        width: 74vw;
+    }
+
+    @include big-desktop {
+        margin: 20px 18vw 50px 18vw;
+        width: 64vw;
+    }
+
     &__input {
         width: 72vw;
         height: 51px;
+
+        @include desktop {
+            width: 67vw;
+        }
+
+        @include big-desktop {
+            width: 57vw;
+        }
 
         input {
             width: calc(100%  - 20px);
@@ -14,6 +34,15 @@
             padding: 10px 10px;
             border: 0 !important;
             border-radius: 10px;
+
+            @include tablet-desktop {
+                font-size: 17px;
+            }
+
+            @include big-desktop {
+                font-size: 22px;
+                width: calc(100%  - 50px);
+            }
         }
     }
 }
