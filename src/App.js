@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import Header from './Components/Header/Header';
@@ -11,12 +10,6 @@ import './App.scss';
 
 function App() {
   const { currentPage } = useSelector((rootReducer) => rootReducer.pageReducer);
-
-  useEffect(() => {
-    document.head.innerHTML+=`
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
-    `
-  }, []);
 
   switch (currentPage) {
     case 'Cards':
