@@ -1,4 +1,4 @@
-# MySiteApp
+# Tinder Clone
 > Still in stage of development ⚠️
 
 Tinder clone: A site presenting some of my skills in web development
